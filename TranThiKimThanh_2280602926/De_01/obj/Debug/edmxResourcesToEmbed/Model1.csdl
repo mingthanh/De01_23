@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanlySVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Lop">
+    <Key>
+      <PropertyRef Name="MaLop" />
+    </Key>
+    <Property Name="MaLop" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TenLop" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Sinhviens" Relationship="Self.FK_Sinhvien_Lop" FromRole="Lop" ToRole="Sinhvien" />
+  </EntityType>
+  <EntityType Name="Sinhvien">
+    <Key>
+      <PropertyRef Name="MaSV" />
+    </Key>
+    <Property Name="MaSV" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="HotenSV" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="MaLop" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="Ngaysinh" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Lop" Relationship="Self.FK_Sinhvien_Lop" FromRole="Sinhvien" ToRole="Lop" />
+  </EntityType>
+  <Association Name="FK_Sinhvien_Lop">
+    <End Role="Lop" Type="Self.Lop" Multiplicity="0..1" />
+    <End Role="Sinhvien" Type="Self.Sinhvien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lop">
+        <PropertyRef Name="MaLop" />
+      </Principal>
+      <Dependent Role="Sinhvien">
+        <PropertyRef Name="MaLop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanlySVEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Lops" EntityType="Self.Lop" />
+    <EntitySet Name="Sinhviens" EntityType="Self.Sinhvien" />
+    <AssociationSet Name="FK_Sinhvien_Lop" Association="Self.FK_Sinhvien_Lop">
+      <End Role="Lop" EntitySet="Lops" />
+      <End Role="Sinhvien" EntitySet="Sinhviens" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanlySVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Lop">
+    <Key>
+      <PropertyRef Name="MaLop" />
+    </Key>
+    <Property Name="MaLop" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="TenLop" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sinhvien">
+    <Key>
+      <PropertyRef Name="MaSV" />
+    </Key>
+    <Property Name="MaSV" Type="char" MaxLength="6" Nullable="false" />
+    <Property Name="HotenSV" Type="nvarchar" MaxLength="40" />
+    <Property Name="MaLop" Type="char" MaxLength="3" />
+    <Property Name="Ngaysinh" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_Sinhvien_Lop">
+    <End Role="Lop" Type="Self.Lop" Multiplicity="0..1" />
+    <End Role="Sinhvien" Type="Self.Sinhvien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lop">
+        <PropertyRef Name="MaLop" />
+      </Principal>
+      <Dependent Role="Sinhvien">
+        <PropertyRef Name="MaLop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanlySVModelStoreContainer">
+    <EntitySet Name="Lop" EntityType="Self.Lop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sinhvien" EntityType="Self.Sinhvien" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Sinhvien_Lop" Association="Self.FK_Sinhvien_Lop">
+      <End Role="Lop" EntitySet="Lop" />
+      <End Role="Sinhvien" EntitySet="Sinhvien" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

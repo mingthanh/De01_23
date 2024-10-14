@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QuanlySVModelStoreContainer" CdmEntityContainer="QuanlySVEntities">
+    <EntitySetMapping Name="Lops">
+      <EntityTypeMapping TypeName="QuanlySVModel.Lop">
+        <MappingFragment StoreEntitySet="Lop">
+          <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+          <ScalarProperty Name="TenLop" ColumnName="TenLop" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sinhviens">
+      <EntityTypeMapping TypeName="QuanlySVModel.Sinhvien">
+        <MappingFragment StoreEntitySet="Sinhvien">
+          <ScalarProperty Name="MaSV" ColumnName="MaSV" />
+          <ScalarProperty Name="HotenSV" ColumnName="HotenSV" />
+          <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+          <ScalarProperty Name="Ngaysinh" ColumnName="Ngaysinh" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
